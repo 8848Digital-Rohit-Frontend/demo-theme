@@ -17,8 +17,10 @@ export const RightArrow = ({ handleNext, disabled = false, ArrowRight = FaArrowR
 };
 
 export const CarouselArrows = ({ handlePrev, handleNext, disabledPrev, disabledNext }: any) => {
-  <div className="row justify-content-end mx-0" style={{ marginTop: '-50px', paddingBottom: '10px' }}>
-    <LeftArrow className="btn w-auto border-0" disabled={disabledPrev} handlePrev={handlePrev} ArrowLeft={FaArrowLeft} />
-    <RightArrow className="btn w-auto border-0" disabled={disabledNext} handleNext={handleNext} ArrowLeft={FaArrowRight} />
-  </div>;
+  return (
+    <div className="row justify-content-end mx-0" style={{ marginTop: '-50px', paddingBottom: '10px' }}>
+      <LeftArrow className="btn w-auto border-0" disabled={disabledPrev} handlePrev={handlePrev} ArrowLeft={FaArrowLeft} />
+      <RightArrow className="btn w-auto border-0" disabled={disabledNext} handleNext={handleNext} ArrowLeft={FaArrowRight} />
+    </div>
+  );
 };
