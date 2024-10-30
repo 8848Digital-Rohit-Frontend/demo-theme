@@ -6,6 +6,7 @@ import { currency_selector_state } from '../../store/slices/general_slices/multi
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import ReplacementModal from './ReplacementModal';
 
 function OrderCardDetails({ data, selectedMultiLangData }: any) {
   const { query } = useRouter();
@@ -179,12 +180,21 @@ function OrderCardDetails({ data, selectedMultiLangData }: any) {
                       </a>
                     </Link>
                   </button>
+                  <button className=" btn btn-link text-decoration-none mb-2 text-uppercase ">
+                    <Link href={`${detail?.product_url}?currency=INR`} legacyBehavior>
+                      <a className="text-decoration-none fs-14" style={{color:'#dc3545'}}>
+                        {' '}
+                        <b>Replace</b>
+                      </a>
+                    </Link>
+                  </button>
                 </div>
               </>
             )}
           </div>
         </div>
       ))}
+      <ReplacementModal showReplacementModal={true} />
     </>
   );
 }

@@ -15,6 +15,8 @@ function OrderMaster() {
       handleUpdateQuery('completed-orders', history);
     } else if (key === '2') {
       handleUpdateQuery('cancelled-orders', history);
+    } else if (key === '3') {
+      handleUpdateQuery('replaced-orders', history);
     }
   };
   return (
@@ -24,7 +26,7 @@ function OrderMaster() {
           <b>{selectedLanguageData?.your_orders}</b>
         </h4>
         <Tabs
-          activeKey={query?.status === 'completed-orders' ? 1 : 2}
+          activeKey={query?.status === 'completed-orders' ? 1 : query?.status === 'cancelled-orders' ? 2 : 3}
           id="uncontrolled-tab-example"
           className="mt-2"
           onSelect={handleTabSelect}
@@ -40,6 +42,15 @@ function OrderMaster() {
           </Tab>
           <Tab eventKey={2} title={selectedLanguageData?.cancelled}>
             <CancelledOrders
+              selectedMultiLangData={selectedLanguageData}
+              isLoading={isLoading}
+              orderListData={orderListData}
+              handleHistoryDate={handleHistoryDate}
+              history={history}
+            />
+          </Tab>
+          <Tab eventKey={3} title={'Replaced'}>
+            <PlacedOrders
               selectedMultiLangData={selectedLanguageData}
               isLoading={isLoading}
               orderListData={orderListData}
