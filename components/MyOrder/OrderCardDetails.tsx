@@ -1,8 +1,5 @@
 import Image from 'next/image';
-import { useSelector } from 'react-redux';
 import NoImage from '../../public/assets/images/no_image.png';
-import { CONSTANTS } from '../../services/config/app-config';
-import { currency_selector_state } from '../../store/slices/general_slices/multi-currency-slice';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
@@ -10,7 +7,6 @@ import ReplacementModal from './ReplacementModal';
 
 function OrderCardDetails({ data, selectedMultiLangData }: any) {
   const { query } = useRouter();
-  const currency_state_from_redux: any = useSelector(currency_selector_state);
 
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -37,14 +33,11 @@ function OrderCardDetails({ data, selectedMultiLangData }: any) {
                 <div className="flex-fill">
                   <h6
                     className={`text-capitalize mb-0 mt-2 d-inline-flex ${
-                      query?.status === 'completed-orders' ? 'text-success' : 'text-danger'
+                      query?.status !== 'cancelled-orders' ? 'text-success' : 'text-danger'
                     } `}
                   >
                     <b>
-                      <div>{selectedMultiLangData?.status} </div>
-                    </b>
-                    <b>
-                      <div>&nbsp;: {data?.payment_status}</div>
+                      <div>{data?.order_status} </div>
                     </b>
                   </h6>
                 </div>
@@ -185,13 +178,15 @@ function OrderCardDetails({ data, selectedMultiLangData }: any) {
                         </a>
                       </Link>
                     </button>
-                    <button
-                      className=" btn btn-link text-decoration-none mb-2 text-uppercase fs-14"
-                      style={{ color: '#dc3545' }}
-                      onClick={() => setModalOpen(true)}
-                    >
-                      <b>Replace</b>
-                    </button>
+                    {data?.order_status === 'Order Delivered' && (
+                      <button
+                        className=" btn btn-link text-decoration-none mb-2 text-uppercase fs-14"
+                        style={{ color: '#dc3545' }}
+                        onClick={() => setModalOpen(true)}
+                      >
+                        <b>Replace</b>
+                      </button>
+                    )}
                   </div>
                 </>
               )}

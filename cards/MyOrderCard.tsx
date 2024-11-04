@@ -62,14 +62,14 @@ function MyOrderCard({ data, selectedMultiLangData }: any) {
               </div>
             ))}
           </div>
-          <div className="text-end col-md-3 col-4 order-cards ">
+          <div className={`${data?.order_status !== 'Order Delivered' ? 'col-md-3' : 'col-md-4'} order-cards col-4 row text-end`}>
             <p className=" pt-2">
               {selectedMultiLangData?.orders} # {data?.name}
             </p>
           </div>
-          <div className="col-md-3 col-4 row text-end">
+          <div className={`${data?.order_status !== 'Order Delivered' ? 'col-md-3' : 'col-md-2 pe-0 mx-0'} col-4 row text-end`}>
             {/* <div className="row mx"> */}
-            <div className="col-md-6">
+            <div className={`${data?.order_status !== 'Order Delivered' ? 'col-md-6' : 'col-12 pe-0'}`}>
               <div className=" text-center ">
                 <div className="flex-fill  text-capitalize    fs-13">
                   <Link href={`my-orders/${data?.name}`} legacyBehavior>
@@ -80,15 +80,17 @@ function MyOrderCard({ data, selectedMultiLangData }: any) {
                 </div>
               </div>
             </div>
-            <div className="col-md-6">
-              <div className=" text-center ">
-                <div className="flex-fill  text-capitalize    fs-13">
-                  <Link href={`my-orders/${data?.name}`} legacyBehavior>
-                    <button className="btn btn-outline-danger w-100 rounded-0 text-md-uppercase">Cancelled</button>
-                  </Link>
+            {data?.order_status !== 'Order Delivered' && (
+              <div className="col-md-6">
+                <div className=" text-center ">
+                  <div className="flex-fill  text-capitalize    fs-13">
+                    <Link href={`my-orders/${data?.name}`} legacyBehavior>
+                      <button className="btn btn-outline-danger w-100 rounded-0 text-md-uppercase">Cancel</button>
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
             {/* </div> */}
           </div>
         </div>

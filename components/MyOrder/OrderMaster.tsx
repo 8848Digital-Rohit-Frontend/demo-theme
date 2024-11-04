@@ -49,7 +49,7 @@ function OrderMaster() {
               history={history}
             />
           </Tab>
-          <Tab eventKey={3} title={'Replaced'}>
+          <Tab eventKey={3} title={'Replacement'}>
             <PlacedOrders
               selectedMultiLangData={selectedLanguageData}
               isLoading={isLoading}

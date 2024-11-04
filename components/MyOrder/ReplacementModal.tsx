@@ -43,7 +43,7 @@ function ReplacementModal({ showReplacementModal, handleCloseReplacementModal, o
             <Form.Control type="file" multiple onChange={handleImageChange} />
           </Form.Group>
         </Form>
-        <Button onClick={() => handleSubmit(orderId, productId)}>Submit</Button>
+        <Button onClick={() => handleSubmit(orderId, productId, handleCloseReplacementModal)}>Submit</Button>
       </Modal.Body>
     </Modal>
   );
