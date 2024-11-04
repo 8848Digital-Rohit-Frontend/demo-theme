@@ -1,7 +1,9 @@
-import React from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
+import useReplaceOrder from '../../hooks/OrderListHooks/useReplaceOrder';
 
-function ReplacementModal({ showReplacementModal, handleCloseReplacementModal }: any) {
+function ReplacementModal({ showReplacementModal, handleCloseReplacementModal, orderId, productId }: any) {
+  const { formValues, handleChange, handleSubmit, handleImageChange, emptyFields }: any = useReplaceOrder();
+
   return (
     <Modal show={showReplacementModal} onHide={handleCloseReplacementModal}>
       <Modal.Header closeButton>
@@ -9,33 +11,39 @@ function ReplacementModal({ showReplacementModal, handleCloseReplacementModal }:
       </Modal.Header>
       <Modal.Body>
         <Form>
-          <Form.Group className="mb-3" controlId="zip_code">
+          <Form.Group className="mb-3" controlId="reason">
             <Form.Label>
               Reason for replacement<span className="mandatoryField">*</span>
             </Form.Label>
             <Form.Control
               type="text"
               as={'textarea'}
-              //   isInvalid={emptyAddressFields.includes('postal_code')}
+              isInvalid={emptyFields?.reason === ''}
               placeholder="Reason for replacement"
-              name="postal_code"
-              //   onChange={(e) => handleCreateAddressChange(e, address_type)}
+              name="reason"
+              onChange={handleChange}
+              value={formValues?.reason}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="qty">
+            <Form.Label>
+              Quantity<span className="mandatoryField">*</span>
+            </Form.Label>
+            <Form.Control
+              type="text"
+              isInvalid={emptyFields?.qty === ''}
+              placeholder="Enter the quantity"
+              name="qty"
+              value={formValues?.qty}
+              onChange={handleChange}
             />
           </Form.Group>
           <Form.Group controlId="formFileMultiple" className="mb-3">
-            <Form.Label>Multiple files input example</Form.Label>
-            <Form.Control type="file" multiple />
+            <Form.Label>Add Images</Form.Label>
+            <Form.Control type="file" multiple onChange={handleImageChange} />
           </Form.Group>
         </Form>
-        <Button>Submit</Button>
-        {/* <CreateAddressModalFields
-          stateList={stateList}
-          cityList={cityList}
-          handleCreateAddressChange={handleCreateAddressChange}
-          handlePostAddress={handlePostAddress}
-          address_type={address_type}
-          emptyAddressFields={emptyAddressFields}
-        /> */}
+        <Button onClick={() => handleSubmit(orderId, productId)}>Submit</Button>
       </Modal.Body>
     </Modal>
   );
