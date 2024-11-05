@@ -1,8 +1,11 @@
 import Link from 'next/link';
 import OrderCardDetails from '../components/MyOrder/OrderCardDetails';
 import { OverlayTrigger, Popover } from 'react-bootstrap';
+import useCancelOrder from '../hooks/OrderListHooks/useCancelOrder';
 
 function MyOrderCard({ data, selectedMultiLangData }: any) {
+  const { handleCancel }: any = useCancelOrder();
+
   const popoverBottom = (addr: any) => (
     <Popover id="popover-positioned-bottom" title="Popover bottom">
       <ul className="p-2" aria-labelledby="ship_to">
@@ -62,21 +65,48 @@ function MyOrderCard({ data, selectedMultiLangData }: any) {
                 </div>
               ))}
             </div>
-            <div className="text-end col-md-4 col-4 order-cards ">
+            <div
+              className={`${
+                data?.order_status !== 'Order Delivered' && data?.order_status !== 'Cancelled' ? 'col-md-3' : 'col-md-4'
+              } order-cards col-4 row text-end`}
+            >
               <p className=" pt-2">
                 {selectedMultiLangData?.orders} # {data?.name}
               </p>
             </div>
-            <div className="col-md-2 col-4  text-end">
-              <div className=" text-center ">
-                <div className="flex-fill  text-capitalize    fs-13">
-                  <Link href={`my-orders/${data?.name}`} legacyBehavior>
-                    <button className="btn btn-outline-primary w-100 rounded-0 text-md-uppercase">
-                      {selectedMultiLangData?.order_details}
-                    </button>
-                  </Link>
+            <div
+              className={`${
+                data?.order_status !== 'Order Delivered' && data?.order_status !== 'Cancelled' ? 'col-md-3' : 'col-md-2'
+              } mx-0  pe-0 col-4 row text-end`}
+            >
+              {/* <div className="row mx"> */}
+              <div
+                className={`${
+                  data?.order_status !== 'Order Delivered' && data?.order_status !== 'Cancelled' ? 'col-md-6' : 'col-12 '
+                } pe-0`}
+              >
+                <div className=" text-center ">
+                  <div className="flex-fill  text-capitalize    fs-13">
+                    <Link href={`my-orders/${data?.name}`} legacyBehavior>
+                      <button className="btn btn-outline-primary w-100 rounded-0 text-md-uppercase">
+                        {selectedMultiLangData?.order_details}
+                      </button>
+                    </Link>
+                  </div>
                 </div>
               </div>
+              {data?.order_status !== 'Order Delivered' && data?.order_status !== 'Cancelled' && (
+                <div className="col-md-6 pe-0">
+                  <div className=" text-center ">
+                    <div className="flex-fill  text-capitalize    fs-13">
+                      <button className="btn btn-outline-danger w-100 rounded-0 text-md-uppercase" onClick={() => handleCancel(data)}>
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+              {/* </div> */}
             </div>
           </div>
         </div>
