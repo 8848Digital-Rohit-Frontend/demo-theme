@@ -178,7 +178,7 @@ function OrderCardDetails({ data, selectedMultiLangData }: any) {
                         </a>
                       </Link>
                     </button>
-                    {data?.order_status === 'Order Delivered' && (
+                    {data?.order_status === 'Order Delivered' && (!data?.replacement_done || !data?.is_replacement) && (
                       <button
                         className=" btn btn-link text-decoration-none mb-2 text-uppercase fs-14"
                         style={{ color: '#dc3545' }}
