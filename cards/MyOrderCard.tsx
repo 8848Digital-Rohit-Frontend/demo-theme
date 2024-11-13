@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import OrderCardDetails from '../components/MyOrder/OrderCardDetails';
 import { OverlayTrigger, Popover } from 'react-bootstrap';
-import useCancelOrder from '../hooks/OrderListHooks/useCancelOrder';
+// import useCancelOrder from '../hooks/OrderListHooks/useCancelOrder';
 
-function MyOrderCard({ data, selectedMultiLangData }: any) {
-  const { handleCancel }: any = useCancelOrder();
+function MyOrderCard({ data, selectedMultiLangData, handleCancel }: any) {
+  // const { handleCancel }: any = useCancelOrder();
 
   const popoverBottom = (addr: any) => (
     <Popover id="popover-positioned-bottom" title="Popover bottom">

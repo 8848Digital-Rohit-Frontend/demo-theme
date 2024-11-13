@@ -7,16 +7,10 @@ import CancelledOrders from './CancelledOrders';
 import PlacedOrders from './PlacedOrders';
 
 function OrderMaster() {
-  const { orderListData, isLoading, errorMessage, history, handleHistoryDate, handleUpdateQuery } = useOrderListHook();
+  const { orderListData, isLoading, filterDate, handleFilterDate, handleCancel, handleTabSelect } = useOrderListHook();
   const { selectedLanguageData }: any = useSelector(SelectedFilterLangDataFromStore);
   const { query } = useRouter();
-  const handleTabSelect = (key: any) => {
-    if (key === '1') {
-      handleUpdateQuery('completed-orders', history);
-    } else if (key === '2') {
-      handleUpdateQuery('cancelled-orders', history);
-    }
-  };
+
   return (
     <div className="container">
       <div className="mt-3">
@@ -34,8 +28,9 @@ function OrderMaster() {
               selectedMultiLangData={selectedLanguageData}
               isLoading={isLoading}
               orderListData={orderListData}
-              handleHistoryDate={handleHistoryDate}
-              history={history}
+              handleFilterDate={handleFilterDate}
+              filterDate={filterDate}
+              handleCancel={handleCancel}
             />
           </Tab>
           <Tab eventKey={2} title={selectedLanguageData?.cancelled}>
@@ -43,8 +38,8 @@ function OrderMaster() {
               selectedMultiLangData={selectedLanguageData}
               isLoading={isLoading}
               orderListData={orderListData}
-              handleHistoryDate={handleHistoryDate}
-              history={history}
+              handleFilterDate={handleFilterDate}
+              filterDate={filterDate}
             />
           </Tab>
         </Tabs>

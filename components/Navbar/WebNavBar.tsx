@@ -165,7 +165,11 @@ function WebNavBar({
                                 {selectedLanguageData?.view_catalogs}
                               </NavDropdown.Item>
                             </Link>
-                            <Link href="/my-orders" passHref className="text-decoration-none">
+                            <Link
+                              href={{ pathname: '/my-orders', query: { status: 'completed-orders', date_range: 'this_month' } }}
+                              passHref
+                              className="text-decoration-none"
+                            >
                               <NavDropdown.Item
                                 as="a"
                                 className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}

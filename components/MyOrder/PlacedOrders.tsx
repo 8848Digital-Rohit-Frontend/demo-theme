@@ -2,7 +2,7 @@ import MyOrderCard from '../../cards/MyOrderCard';
 import NoDataFound from '../NoRecordFound';
 import ListCardLoadingSkeleton from './ListCardLoadingSkeleton';
 
-function PlacedOrders({ selectedMultiLangData, isLoading, orderListData, handleHistoryDate, history }: any) {
+function PlacedOrders({ selectedMultiLangData, isLoading, orderListData, handleFilterDate, filterDate, handleCancel }: any) {
   return (
     <>
       <div role="tabpanel" aria-hidden="false">
@@ -10,7 +10,7 @@ function PlacedOrders({ selectedMultiLangData, isLoading, orderListData, handleH
           <div className="col-lg-12">
             <div className="row">
               <div className="col-lg-2 col-sm-4 col-6">
-                <select className="form-select w-auto " onChange={handleHistoryDate} value={history}>
+                <select className="form-select w-auto " onChange={handleFilterDate} value={filterDate}>
                   <option value="this_month">{selectedMultiLangData?.this_month}</option>
                   <option value="last_30_days">{selectedMultiLangData?.last_30_days}</option>
                   <option value="past_3_months">{selectedMultiLangData?.past_3_months}</option>
@@ -44,7 +44,7 @@ function PlacedOrders({ selectedMultiLangData, isLoading, orderListData, handleH
                       <div className="row color-black fs-14" key={i}>
                         <div className="col-lg-12">
                           <div className="  mb-2 card row">
-                            <MyOrderCard data={data} selectedMultiLangData={selectedMultiLangData} />
+                            <MyOrderCard handleCancel={handleCancel} data={data} selectedMultiLangData={selectedMultiLangData} />
                           </div>
                         </div>
                       </div>

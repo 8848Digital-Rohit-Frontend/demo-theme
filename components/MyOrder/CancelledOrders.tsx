@@ -2,7 +2,7 @@ import MyOrderCard from '../../cards/MyOrderCard';
 import NoDataFound from '../NoRecordFound';
 import ListCardLoadingSkeleton from './ListCardLoadingSkeleton';
 
-function CancelledOrders({ selectedMultiLangData, isLoading, orderListData, handleHistoryDate, history }: any) {
+function CancelledOrders({ selectedMultiLangData, isLoading, orderListData, handleFilterDate, filterDate }: any) {
   const orderCancelled: any = orderListData.length > 0 && orderListData.filter((items: any) => items?.payment_status === 'Cancelled');
   return (
     <>
@@ -11,7 +11,7 @@ function CancelledOrders({ selectedMultiLangData, isLoading, orderListData, hand
           <div className="col-lg-12">
             <div className="row">
               <div className="col-lg-2 col-sm-4 col-6">
-                <select className="form-select w-auto " onChange={handleHistoryDate} value={history}>
+                <select className="form-select w-auto " onChange={handleFilterDate} value={filterDate}>
                   <option value="this_month">{selectedMultiLangData?.this_month}</option>
                   <option value="last_30_days">{selectedMultiLangData?.last_30_days}</option>
                   <option value="past_3_months">{selectedMultiLangData?.past_3_months}</option>
