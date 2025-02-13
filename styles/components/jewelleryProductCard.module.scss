@@ -41,7 +41,8 @@
   font-size: 14px;
   color: #898888;
   font-weight: 400;
-  font-family: 'Poppins';
+  font-family: "Poppins", serif !important;
+  padding-top: 4px;
 }
 
 .tabProductmrpPrice {
@@ -100,6 +101,11 @@
   font-size: 20px;
   padding: 4px 9px;
   cursor: pointer;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .icon_btn_container:hover {

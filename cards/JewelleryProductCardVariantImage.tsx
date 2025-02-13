@@ -76,20 +76,20 @@ const JewelleryProductCardVariantImage = ({
     }
     if (!wishProducts) {
       return (
-        <span className={` `}>
+        <span className={` d-flex`}>
           <FaRegHeart onClick={() => handleAddToWishList(data)} />
         </span>
       );
     } else {
       if (router?.asPath?.startsWith('/wishlist')) {
         return (
-          <span className={` text-secondary `}>
+          <span className={`d-flex text-secondary `}>
             <RiDeleteBinLine onClick={() => handleRemoveFromWishList(data?.name)} />
           </span>
         );
       } else {
         return (
-          <span className={`  `}>
+          <span className={`d-flex  `}>
             <FaHeart onClick={() => handleRemoveFromWishList(data?.name)} />
           </span>
         );
@@ -223,8 +223,8 @@ const JewelleryProductCardVariantImage = ({
             </h6>
           </Link>
           <div>
-            <h6 className={`${styles.tabProductTitle}`}>
-              <span className={styles.tabProductPrice}>₹{data?.price}</span>
+            <h6 className={`${styles.tabProductTitle} ${styles.tabProductPrice}`}>
+              <span className={styles.tabProductPrice}>₹{data?.price?.toLocaleString("en-IN")}</span>
               {/* <span className={styles.tabProductmrpPrice}>₹{data?.mrp_price}</span> */}
             </h6>
           </div>

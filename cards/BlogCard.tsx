@@ -21,12 +21,12 @@ function BlogCard({ blog }: any) {
       </div>
       <div className="">
         <p className={`${styles.blog_heading1}`}>
-          <span className="text-secondary fs-14">on</span> {dateFormat(blog?.published_on)}
+          <span className="text-secondary fs-14 font-poppins">on</span> {dateFormat(blog?.published_on)}
         </p>
-        <p className={`m-0  ${styles.blog_heading2} font-poppins`}>{blog?.title}</p>
+        <p className={`m-0  ${styles.blog_heading2}`}>{blog?.title}</p>
       </div>
-      <div className={`${styles?.blog_description} `}>
-        <p>{blog?.blog_intro}</p>
+      <div className={`${styles?.blog_description} font-poppins`}>
+        <p>{blog?.blog_intro?.slice(0,120)}</p>
       </div>
     </>
   );

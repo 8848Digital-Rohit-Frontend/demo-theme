@@ -104,7 +104,7 @@ function LogoInCenterNavbar({
               </div>
 
               <div className={``}>
-                <ul className=" list-inline d-flex justify-content-end align-items-center m-0">
+                <ul className=" list-inline d-flex justify-content-end align-items-center m-0 gap-1">
                   <li className={` ${stylesNavbar.list_inline_item_custom} `}>
                     <Link href="/wishlist " legacyBehavior>
                       <a className={`link-dark ${stylesNavbar.label}`}>
